@@ -1,0 +1,267 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/collaps.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/prof.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/add.css")}}>
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">-->
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    {% endblock %}
+    <style>
+      .disp{
+        display: none;
+      }
+      .frm1{
+       width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        flex-direction: column;
+      }
+    </style>
+{% block body %}
+<body style="background-color: rgb(2, 2, 39); height: 98%; width: 96%;">
+    
+
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a  href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+        <div class="main" id="main" style="margin-top:-2px ; padding-top: 8px; overflow-y: scroll;">
+                
+                <div class="bgcart">
+                    <div class="card  text-white" style="height: 170px; margin-top: 20px; background-color: rgba(2, 2, 39, 0.527);">
+                      
+                        <center>
+                            <div class="card-img-overlay" style="color: rgb(253, 253, 217);">
+                            <h5 style="color: rgb(253, 253, 217);" class="card-title">Créer un nouveau cours</h5>
+                            <p style="color: rgb(253, 253, 217);" class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </center>
+                      </div>
+                      <div class="mecr" style="background-color: rgba(255, 255, 255, 0.473); margin: auto; margin-top:30px;">
+                        <div class="bbn">
+
+                            <button  id="bc1" onclick="bt1()"><a style="text-decoration: none; color: rgb(253, 253, 217);" ></a> 1</button>
+                            <div class="line"></div>
+                            <button class="bbb" id="bc2" onclick="bt2()">2</button>
+                            <div class="line"></div>
+                            <button id="bc3" onclick="bt3()">3</button>
+                        </div>
+                            <div class="c2 cntnn" id="c2">
+                                <div class="lec" style="width: 90%; margin: auto ;">
+                                    <h3 style="color: rgb(2, 2, 39);">Ajouter des leçons</h3>
+                                </div>
+                                
+                                <br>
+                                
+                                
+                                <div style="width: 90%; margin: auto;">
+                                    <div class="l">
+                                        <button type="button" class="btn btn-outline-dark" onclick="ajout()"   style="background-color: rgba(2, 2, 39, 0.432); height: 35px; display: flex; padding: 16px;border: transparent; align-items: center; margin:60px 0 20px 0; font-weight: 600; color: rgb(2, 2, 39);">+ Chapitre</button>
+                                    </div>
+                                    <div id="frm1" class="disp" style=" width: 450px; margin: 20px auto;" >
+                                        <form action=""  method="post" class="frm1" >
+                                            <div class="form-group col-md-6" style="width: 100%;">
+                                                <label for="inputEmail4">Id chapitre</label>
+                                                <input type="text" name="idch"  class="form-control" style="width: 95%;" id="idch" placeholder="Id chapitre" value="">
+                                            </div>
+                                            <div class="form-group col-md-6" style="width: 100%;">
+                                                <label for="inputEmail4">Nom de leçon</label>
+                                                <input type="text" name="nomLec"  class="form-control" style="width: 95%;" id="inputEmail4 nom" placeholder="Nom">
+                                            </div>
+                                            <div class="form-group"  style="width: 90%; margin: auto;">
+                                                <label for="exampleFormControlFile1">Example file input</label>
+                                                <input type="file" name="vid" class="form-control-file"   id="exampleFormControlFile1 file">
+                                            </div><br>
+                                            <div class="form-group" style="width: 90%; margin: auto;">
+                                                <label for="exampleInputEmail1">Nom de cours</label><br>
+                                                <textarea name="descr" id="descr" cols="47" rows="5"></textarea>
+                                              </div><br>
+                                              <button type="submit" name="lec" value="lec" class="btn btn-outline-dark">Ajouter</button>
+                                         
+                                          </form>
+                                          
+                                        </div>
+                                        
+                                    {% for ch in c  %}
+                                        <button type="button" class="collapsible" style="font-size:1.7rem;
+                                        font-weight:600;">{{ ch.nom }}</button>
+                                        <div class="content">
+                                            
+                                            {% for lec in l %}
+                                            {% if lec.idCh == ch.id %}
+                                                <p onclick="lecon('{{ch.id}}')"> - {{ lec.nom}} <a> <i style="color:brown;" class="fa-solid fa-circle-play"></i></a></p>
+                                            {% endif %}
+                                            
+                                           
+                                            {% endfor %}
+                                            <div class="g">
+                                                <button type="button"  class="btn btn-outline-dark" style="background-color: brown; height: 35px; display: flex; padding: 16px;border: transparent; align-items: center; margin:10px 0 10px 25px; font-weight: 600; color: rgb(253, 253, 217);"><a onclick="lecon('{{ch.id}}')" style="text-decoration: none; color: beige;"> Partie+</a></button>
+                                                <button type="button"   class="btn btn-outline-dark" style="background-color: brown; height: 35px; display: flex; padding: 16px;border: transparent; align-items: center; margin:10px 25px; font-weight: 600; color: rgb(253, 253, 217);">+ Quiz</button>
+                                            </div>
+                                            
+                                         </div> 
+                                      {% endfor %}
+
+                                      
+                                         
+
+                                      
+                                    
+
+                                    
+                                </div>
+                                <div id="frm" class="disp" >
+                                <form action=""  method="post" class="frm" style="width:90%; margin: auto; display:flex; align-items:center;">
+                                        <div class="form-group" style="width:98%; display:flex; height:100%; margin:0;  align-items:center;">
+                                          <input type="text" style="width: 35%;font-size:1.7rem;
+                                          font-weight:600;" name="nomCh" class="form-control" id="exampleInputEmail1" placeholder="Nom du chapitre">
+                                        </div>
+                                        <button style="width:2%; border:transparent;" name="chap" value="chap"  type="submit" class="btn btn-default"> <i class="fa-solid fa-plus"></i></button>
+                                  </form>
+                                </div>
+                               
+                                                            
+                                
+                                <div class="suiv" style="width: 90%; margin: auto; margin-bottom:20px; "><button type="button"class="btn suiv btn-primary" onclick="bt3()">Suivant</button></div>
+                            </div>
+                            
+                            <div class="c3 cntnn disp" style=" height: fit-content;" id="c3">
+                                <div style="height: 100px;">
+                                    <center>Votre cours été bien ajouté</center>
+                                    
+                                </div>
+                                <div class="suiv" style="width: 80%; display: flex; justify-content: flex-end; margin: auto; margin-bottom:30px; "><a href="{{url('formateur')}}"><button type="button"class="btn suiv btn-primary" > Suivant</button></a></div>
+
+                                
+                            </div>
+                      </div>
+                      
+                            
+                             
+                {% endblock %}
+                <script>
+                    const bc1=document.getElementById('bc1'),
+                    bc2=document.getElementById('bc2'),
+                    bc3=document.getElementById('bc3');
+                    const ct1=document.getElementById('c1'),
+                    ct2=document.getElementById('c2'),
+                    ct3=document.getElementById('c3'),
+                    cntnn=document.querySelectorAll('.cntnn');
+
+                    const main=document.getElementById("main");
+                    const nav=document.getElementById("nav");
+                    const desc=document.querySelectorAll('.decri');
+                    console.log(desc);
+                   
+                   function f1(){
+                    console.log('hi');
+                    main.classList.add("active");
+                    nav.classList.add('ac')
+                   }
+                   function f2(){
+                    console.log('bye');
+                    main.classList.remove("active");
+                    nav.classList.remove('ac')
+                   }
+                   desc.forEach(element =>{
+                    element.addEventListener("mouseenter",function(){
+                        this.classList.add('hover');
+                    })
+                    element.addEventListener("mouseleave",function(){
+                        this.classList.remove('hover');
+                    })
+                })
+                const frm=document.getElementById('frm');
+                function ajout(){
+                  console.log("hello")
+                  frm.classList.remove('disp');
+                }
+                const frm1=document.getElementById('frm1');
+                
+                function lecon(id){
+                  console.log(id)
+                  frm1.classList.remove('disp');
+                  document.getElementById("idch").value = id;
+                  return id;
+                }
+                
+
+                    function bt1(){
+                        console.log('hh1')
+                        bc1.classList.add("bbb");
+                        bc2.classList.remove("bbb");
+                        bc3.classList.remove("bbb");
+                        cntnn.forEach(element=>{
+                            element.classList.add('disp');
+                        })
+                        ct1.classList.remove("disp");
+
+                    }
+                    function bt2(){
+                        console.log('hh2')
+                        bc2.classList.add("bbb");
+                        bc1.classList.remove("bbb");
+                        bc3.classList.remove("bbb");
+                        cntnn.forEach(element=>{
+                            element.classList.add('disp');
+                        })
+                        ct2.classList.remove("disp");
+                       
+
+                    }
+                    function bt3(){
+                        console.log('hh3')
+                        bc3.classList.add("bbb");
+                        bc2.classList.remove("bbb");
+                        bc1.classList.remove("bbb");
+                        cntnn.forEach(element=>{
+                            element.classList.add('disp');
+                        })
+                        ct3.classList.remove("disp");
+
+                    }
+                    const pl=document.getElementById('plus'),
+                    moi=document.getElementById('moin');
+                    function plus(){
+                        pl.classList.remove('disp');
+                        moi.classList.add('disp');
+                    }
+                    function moins(){
+                        moi.classList.remove('disp');
+                        pl.classList.add('disp');
+                    }
+                    
+                    
+                        var coll = document.getElementsByClassName("collapsible");
+                 var i;
+                 
+                 for (i = 0; i < coll.length; i++) {
+                   coll[i].addEventListener("click", function() {
+                     this.classList.toggle("active");
+                     var content = this.nextElementSibling;
+                     if (content.style.maxHeight){
+                       content.style.maxHeight = null;
+                     } else {
+                       content.style.maxHeight = content.scrollHeight + "px";
+                     }
+                   });
+                 }
+                
+                  </script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>

@@ -1,0 +1,41 @@
+.contain{
+    height:75vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    margin: 40px 0;
+}
+.text{
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    color: rgb(2,2,39);
+}
+.contain img{
+    width: 500px;
+    height: 300px;
+    margin-right: 50px;
+}
+.bbbb{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+.mml1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 350px;
+    margin: auto;
+}
+.mml1 img{
+    width: 200px;
+    height: 100px;
+}

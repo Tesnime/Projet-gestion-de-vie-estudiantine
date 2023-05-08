@@ -1,0 +1,91 @@
+body{
+    display: grid;
+    grid-template-columns: 1% 99%;
+    height:100vh;
+    background-color: rgb(2, 2, 39);
+    overflow-y: hidden;
+    overflow-x: hidden;
+ }
+ .asideNav{
+     background-color: rgb(2, 2, 39);
+     display: flex;
+     flex-direction: column;
+     height:100vh;
+     align-items: flex-start;
+     padding-left: 15px;
+     justify-content: center;
+     margin-top: -20px;
+     margin-left: -10px;
+     overflow: hidden;
+     width: 300px;
+     padding-right: 30px;
+     gap: 20px;
+    
+ }
+ a{
+     text-decoration: none;
+     color: aliceblue;
+     font-size: 15px;
+     font-weight: 600;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ }
+ .asideNav img{
+     width: 40px;
+     height: 40px;
+     margin-right: 20px;
+ }
+ .main{
+     position: relative;
+     background-color: rgb(253, 253, 217);
+     width: 100%;
+     left: 60px;
+     margin: -10px;
+     border-radius: 50px  0 0 50px;
+    
+ }
+ .main .nav{
+     height: 50px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     background-color: transparent;
+     padding: 0 50px;
+     color: rgb(2, 2, 39);
+     
+ }
+.main .nav a{
+     color: rgb(2, 2, 39);
+ }
+ .ac{
+     width: 900px;
+ }
+ .nav ul{
+     list-style: none;
+     display: flex;
+     flex-direction: row;
+     gap: 30px;
+ }
+ .main .nav.block{
+     display: flex;
+     flex-direction: row;
+     gap: 10px;
+     align-items: center;
+ }
+ .search{
+     background-color: transparent;
+     border-radius: 20px;
+     height: 35px;
+     padding-left:10px ;
+     border: 1.5px solid rgba(2, 2, 39, 0.438);
+ }
+ .block i{
+    font-size: 20px;
+ }
+ 
+ .active{
+     left: 280px;
+ }
+
+ 
+ 

@@ -1,0 +1,199 @@
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/mainFS.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/etdint.css")}}>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+<style>
+  
+</style>
+{% block body %}
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+        <div class="main" style="overflow-y: scroll;" id="main">
+                {% include "nav.html.twig" %}
+                <div class="cont">
+                    <div class="hello">
+                        <div class="txx">
+                            <div class="tit">Bienvenue User,</div>
+                            <p>nous sommes trés heureux que vous etiez ici,
+                                    nous espirons que vous trouverez vos attentes et atteindrez vos objectifs ...</p>
+                        </div>
+                        <img src="assets/image/elaer.png" alt="">
+                    </div>
+                    <div class="server">
+                        <div class="ser">
+                            <div class="iimg" style="color: orange; background-color: rgba(255, 166, 0, 0.37);"><i class="fa-solid fa-user-tie"></i></div>
+                            <h3>Apprendre avec des experts</h3>
+                            <p>lorem due lin frel cerde modile mue hoykn</p>
+                        </div>
+                        <div class="ser">
+                                <div class="iimg" style="color: cadetblue; background-color: rgba(95, 158, 160, 0.377);"><i class="fa-solid fa-book"></i></div>
+                                <h3>Apprendre n'importe quoi</h3>
+                                <p>lorem due lin frel cerde modile mue hoykn</p>
+                        </div>
+                        <div class="ser">
+                                <div class="iimg" style="color: green; background-color: rgba(0, 128, 0, 0.322);"><i class="fa-solid fa-clock"></i></div>
+                                <h3>apprentissage Flexible</h3>
+                                <p>lorem due lin frel cerde modile mue hoykn</p>
+                        </div>
+                        <div class="ser">
+                                <div class="iimg" style="color: purple; background-color: rgba(128, 0, 128, 0.295);"><i class="fa-solid fa-building-columns"></i></div>
+                                <h3>Normes industrielles</h3>
+                                <p>lorem due lin frel cerde modile mue hoykn</p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="cors">
+                        <center><h3>Cours</h3></center>
+                        <div class="cours" style="border:transparent;  ">
+                            {% for cours in c %}
+                            <div class="cour" style="width:280px; display: grid; grid-template-rows: 1fr 2fr 1fr;">
+                                <img style="height: 120px;" src="assets/image/{{cours.image}}" alt="">
+                                <div class="decri"  >
+                                    <div class="cate" >
+                                        <span style="background-color:rgba(95, 158, 160, 0.65) ; margin: 5px 0" class="badge badge-info">{{cours.type}}</span>
+                                    </div>
+                                    <div class="cc">
+                                        <h4 style="text-decoration: none;"><a style="text-decoration: none;" href="#" >{{cours.nom}}</a> </h4>
+                                    </div>
+                                    <div class="dd">
+                                        <p>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet.</p>
+                                    </div>
+                                    <div class="detail" style="display: flex;">
+                                        <span class="rate"style="margin: -10px -10px auto auto; "><i class="fa-solid fa-star"></i><span class="val">{{cours.note}}%</span></span>
+                                        <span class="rate" style="color: cadetblue; margin: auto; margin-top: -10px;"><i style="color: cadetblue;" class="fa-solid fa-globe"></i><span  class="val">{{cours.langue}}</span></span>
+                                        <span class="rate" style="color: orange; margin: auto; margin-top: -12px;"><i style="color: orange;" class="fa-solid fa-signal"></i><span  class="val">{{cours.niveau}}</span></span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="acces">
+                                    <div class="temps"> <i class="fa-regular fa-clock"> </i> {{cours.dure}} hrs </div>
+                                    <button type="button" style="background-color: rgb(2, 2, 39); border: transparent;border-radius: 20px;
+                                    margin-top: 10px;margin-right: 5px; height: 30px;
+                                    display: flex; align-items: center;" class="btn btn-primary"><a style="color: beige;" href="{{path('det_cours',{"id":cours.id})}}">commencer</a></button>
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                           
+                           
+                           
+                        </div>
+                </div>
+
+                <div class="hello" style="margin-top: 50px;">
+                        <img src="assets/image/feedback.png" alt="">
+                        <div class="txx">
+                            <center><h3>Quelques feedback de nous etudiant</h3></center>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, dolor. Cras el non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. </p>
+                            <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: beige;" href="#">voir plus</a> </button>
+                            <div  style=" width: 100%;
+                            display: flex;
+                            justify-content: flex-end;"><img style="width: 240px; height: 150px; background-color: transparent;" src="assets/image/fed2.png" alt=""></div>
+                        </div>
+                </div>   
+                       
+                 <div class="quiz">
+                    
+                 </div>           
+                        
+                       
+                
+                    
+        </div>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const main=document.getElementById("main");
+        const nav=document.getElementById("nav");
+        const desc=document.querySelectorAll('.decri');
+        console.log(desc);
+       
+       function f1(){
+        console.log('hi');
+        main.classList.add("active");
+        nav.classList.add('ac')
+       }
+       function f2(){
+        console.log('bye');
+        main.classList.remove("active");
+        nav.classList.remove('ac')
+       }
+       desc.forEach(element =>{
+        element.addEventListener("mouseenter",function(){
+            this.classList.add('hover');
+        })
+        element.addEventListener("mouseleave",function(){
+            this.classList.remove('hover');
+        })
+       })
+      
+       
+       const bn=document.querySelectorAll(".bn");
+       contenu=document.querySelectorAll('.nn');
+       bn.forEach(elmnt=>{
+        elmnt.addEventListener("click",function(){
+            bn.forEach(btn=>btn.classList.add('nonact'));
+            bn.forEach(btn=>btn.classList.remove('act'));
+            contenu.forEach(ee=>ee.classList.add('hid'));
+            this.classList.add('act');
+            this.classList.remove('nonact');
+            if(this==bn[0]){
+                contenu[0].classList.remove('hid');
+            }
+            else{
+                contenu[1].classList.remove('hid');
+            }
+        })
+       })
+       let nb=Number( document.getElementById('valeur').textContent);
+       const unl=document.getElementById('unl'),
+        l=document.getElementById('l');
+        function fav(){
+            unl.classList.add('hid');
+            l.classList.remove('hid');
+            nb+=1;
+            document.getElementById('valeur').textContent=nb;
+        }
+        function unfav(){
+            l.classList.add('hid');
+            unl.classList.remove('hid');
+            nb-=1;
+            document.getElementById('valeur').textContent=nb;
+        }
+       var indexval=0;
+       function slideshow(){
+        setTimeout(slideshow,2500);
+        var x;
+        const img=document.querySelectorAll('.im');
+        console.log(img)
+        for(x=0; x<img.length ; x++){
+            img[x].classList.add('add');
+        }
+        indexval++;
+        if(indexval > img.length){
+            indexval=1;
+        }
+        img[indexval-1].classList.add('m');
+        
+       }
+       slideshow();
+    </script>
+    
+{% endblock %}

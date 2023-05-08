@@ -1,0 +1,63 @@
+.coo{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin-bottom: 50px;
+    width: 90%;
+    margin: auto;
+    row-gap: 20px;
+}
+.sea{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+}
+.sea button{
+    background-color: transparent;
+    height: 50px;
+    border: transparent;
+    margin-right: 5px;
+    color: #bbb;
+}
+.titre{
+    background-image: url(../image/bb.jpg);
+    height: 150px;
+    margin-top: 30px;
+    background-size: cover;
+    background-position: center;
+    font-weight: 800;
+    font-size: 6rem;
+    font-family: "Brush Script MT", cursive;
+    justify-content: center;
+    display: flex;
+    color: rgb(2, 2, 39);
+    align-items: center;
+}
+.cat{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    width: 90%;
+    margin: 20px auto;
+}
+.cat1{
+    width: 80%;
+    height: 50px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 25px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    background-color: rgba(95, 158, 160, 0.322);
+    justify-content: center;
+    color: rgba(2, 2, 39, 0.856);
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 550;
+    border: transparent;
+}
+.cate_active{
+    background-color: rgb(2, 2, 39);
+    color: beige;
+}

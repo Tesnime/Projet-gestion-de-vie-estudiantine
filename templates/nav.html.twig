@@ -1,0 +1,103 @@
+<style>
+    .nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .block{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .nav ul li a{
+        text-decoration: none;
+    }
+    .nav ul li a:hover{
+        font-size: large;
+        color:rgb(199, 50, 130);
+    }
+    .llllll{
+       text-shadow: .5px .5px 2px rgb(199, 50, 130);
+    }
+    .nav h3 span{
+        font-family: 'Ink Free';
+        color: rgb(199, 50, 130);
+    }
+    .nav h3{
+        font-family: 'Brush Script MT';
+        font-weight: 900;
+        font-size: 2rem;
+    }
+    #drop{
+        border: 1px solid #ccc;
+        width: 150px;
+        padding: 0;
+    }
+    #drop ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+    }
+    #drop ul li{
+        margin: 0;
+        padding: 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom:1px solid #ccc ;
+        width: 100%;
+    }
+    .disp{
+        display: none;
+    }
+</style>
+
+<div class="nav" id="nav">
+    <h3><span>L</span>O<span>G</span>O</h3>
+    <ul>
+        <li><a   href="{{url('mainFS')}}"> Accueil</a></li>
+        <li><a href="{{url('cours',{'typ':'All'})}}">Cours</a></li>
+        <li>
+            <a href="#" onclick="drop()">Utilisateur</a>
+            <div class=" disp" id="drop">
+                <ul>
+                    <li><a href="{{path('etud')}}"> Etudiant</a></li>
+                    <li><a href="{{path('formateur')}}">Formateur</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#">Aide</a></li>
+    </ul>
+    <div class="block">
+        <i class="fa fa-bell" ></i>
+        <img style="height: 50px; width: 50px;" src="assets\image\user.png" alt="">
+    </div>
+</div>
+<script>
+    function drop(){
+        const drp=document.getElementById("drop").classList;
+        
+        let test=false;
+        drp.forEach(element=>{
+            console.log(test)
+            if(element == 'disp'){
+                document.getElementById('drop').classList.remove('disp');
+                test= true;
+                console.log(test)
+            }
+        })
+            if (test==false){
+                console.log('ho')
+                document.getElementById('drop').classList.add('disp');
+            }
+        
+    }
+</script>

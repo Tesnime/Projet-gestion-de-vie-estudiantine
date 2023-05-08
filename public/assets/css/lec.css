@@ -1,0 +1,84 @@
+.ntt{
+    position: relative;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin: auto;
+    margin-top: -40px;
+    width: 93%;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: rgb(253, 253, 217);
+
+}
+.collaps{
+    height: 100vh;
+    border-right: 1px solid #ccc;
+
+}
+.collaps .collapsible{
+    background-color: transparent;
+    color: rgb(2, 2, 39);
+}
+.collaps .content{
+    background-color: transparent;
+    font-size: 1.1rem;
+    font-weight: 100;
+}
+.collaps .content p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mmm{
+    color:rgba(2, 2, 39, 0.712);
+    text-decoration: none;
+    font-size: 10px;
+}
+.mmm:hover{
+    color: cadetblue;
+    text-decoration: none;
+}
+
+
+.lu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.read{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    color: rgb(2, 2, 39);
+}
+
+.disp{
+    display: none;
+}
+.titre .progress{
+    width: 95%;
+    margin: 0 auto;
+}
+.titre{
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: normal;
+    margin: 20px 0 0 1px;
+    height: 150px;
+    background-color: rgb(2, 2, 39);
+    color: beige;
+    padding: 40px 20px;
+}
+.desc{
+    margin: auto; 
+    margin-top: 20px; 
+    width: 92%;
+    color: rgb(2, 2, 39);
+    font-size: 15px;
+}

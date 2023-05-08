@@ -1,0 +1,227 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/etdint.css")}}>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<body style="background-color: rgb(2, 2, 39); height: 98%; width: 96%;">
+    
+
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a  href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+                <div class="main" id="main">
+                    {% include "nav.html.twig" %}
+                    <div class="containe">
+                        <div class="asidb">
+                            <nav class="asid">
+                                <div class="actv"><a class="nav-link" href="#">Accueil</a></div>
+                                <div><a class="nav-link" href="#">Mes cours</a></div>
+                                <div><a class="nav-link" href="{{path('fav')}}">Favoris</a></div>
+                                <div><a class="nav-link" href="#">Modifier le profile</a></div>
+                                <div><a class="nav-link" href="#">Modifier le mot de passe</a></div>
+                                <div><a class="nav-link" href="#">Déconnecter</a></div>
+                              </nav>
+                        </div>
+                        <div class="contenuu">
+                            <div class="bii">
+                                <div class="dj" style="background-color: rgba(95, 158, 160, 0.377);border: transparent; color:rgba(95, 158, 160) ;"><i class="fa-regular fa-calendar-xmark"></i><span>Cours commençer <br>{{res|length}} </span></div>
+                                <div class="dj" style="background-color: rgba(210, 105, 30, 0.356);border: transparent; color: rgba(210, 105, 30);"><i class="fa-regular fa-calendar-check"></i><span>Cours terminer <br>{{ter|length}}</span></div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div class="h4">
+                                    <h5>Vos Statistiques</h5>
+                                    <span>Heures d'apprentissages</span>
+                                </div>
+                                <canvas id="myChart" style="height: 350px; width: 90%; margin: auto;"></canvas>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div class="h4">
+                                    <h5>Cours commencés</h5>
+                                </div>
+                                <a class="lien" href=#>Mes cours</a>
+                                <div class="c">
+                                    {% if res|length!=0 %}
+                                        
+                                    
+                                    {% for row in res %}
+                                        
+                                    
+                                    <div class="c1">
+                                        <img src="assets/image/{{row.image}}" alt="">
+                                        <div class="des">
+                                            <h4 style="text-decoration: none;"><a style="text-decoration: none;" href="#" >{{row.nom }}</a> </h4>
+                                            <div class="mm">
+                                                <div class="val">{{row.progres}}%</div>
+                                                <div class="pourc">
+                                                    <div class="prc" id="{{row.nom}}"></div>
+                                                </div>
+                                                <script>
+                                                    document.getElementById('{{row.nom}}').style.width='{{row.progres}}%';
+                                                </script>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="contin">
+                                            <button type="button" class="btn btn-success">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                    
+                                    {% endfor %}
+                                    {% else  %}
+                                    <p>AUCUN COURS COMMENCER</p>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div class="h4">
+                                    <h5>Suggestions</h5>
+                                </div>
+                                <div class="cours">
+                                    {% for cours in c1 %}
+                            <div class="cour" style="width:280px; display: grid; grid-template-rows: 1fr 2fr 1fr;">
+                                <img style="height: 120px;" src="assets/image/{{cours.image}}" alt="">
+                                <div class="decri"  >
+                                    <div class="cate" >
+                                        <span style="background-color:rgba(95, 158, 160, 0.65) ; margin: 5px 0" class="badge badge-info">{{cours.type}}</span>
+                                    </div>
+                                    <div class="cc">
+                                        <h4 style="text-decoration: none;"><a style="text-decoration: none;" href="#" >{{cours.nom}}</a> </h4>
+                                    </div>
+                                    <div class="dd">
+                                        <p>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet.</p>
+                                    </div>
+                                    <div class="detail" style="display: flex;">
+                                        <span class="rate"style="margin: -10px -10px auto auto; "><i class="fa-solid fa-star"></i><span class="val">{{cours.note}}%</span></span>
+                                        <span class="rate" style="color: cadetblue; margin: auto; margin-top: -10px;"><i style="color: cadetblue;" class="fa-solid fa-globe"></i><span  class="val">{{cours.langue}}</span></span>
+                                        <span class="rate" style="color: orange; margin: auto; margin-top: -12px;"><i style="color: orange;" class="fa-solid fa-signal"></i><span  class="val">{{cours.niveau}}</span></span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="acces">
+                                    <div class="temps"> <i class="fa-regular fa-clock"> </i> {{cours.dure}} hrs </div>
+                                    <button type="button" style="background-color: rgb(2, 2, 39); border: transparent;border-radius: 20px;
+                                    margin-top: 10px;margin-right: 5px; height: 30px;
+                                    display: flex; align-items: center;" class="btn btn-primary"><a style="color: beige;" href="{{path('det_cours',{"id":cours.id})}}">commencer</a></button>
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                                </div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div class="h4">
+                                    <h5>Autres cours</h5>
+                                </div>
+                                <a class="lien" href=#>Cours</a>
+                                <div class="cours">
+                                    {% for cours in c %}
+                            <div class="cour" style="width:280px; display: grid; grid-template-rows: 1fr 2fr 1fr;">
+                                <img style="height: 120px;" src="assets/image/{{cours.image}}" alt="">
+                                <div class="decri"  >
+                                    <div class="cate" >
+                                        <span style="background-color:rgba(95, 158, 160, 0.65) ; margin: 5px 0" class="badge badge-info">{{cours.type}}</span>
+                                    </div>
+                                    <div class="cc">
+                                        <h4 style="text-decoration: none;"><a style="text-decoration: none;" href="#" >{{cours.nom}}</a> </h4>
+                                    </div>
+                                    <div class="dd">
+                                        <p>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet.</p>
+                                    </div>
+                                    <div class="detail" style="display: flex;">
+                                        <span class="rate"style="margin: -10px -10px auto auto; "><i class="fa-solid fa-star"></i><span class="val">{{cours.note}}%</span></span>
+                                        <span class="rate" style="color: cadetblue; margin: auto; margin-top: -10px;"><i style="color: cadetblue;" class="fa-solid fa-globe"></i><span  class="val">{{cours.langue}}</span></span>
+                                        <span class="rate" style="color: orange; margin: auto; margin-top: -12px;"><i style="color: orange;" class="fa-solid fa-signal"></i><span  class="val">{{cours.niveau}}</span></span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="acces">
+                                    <div class="temps"> <i class="fa-regular fa-clock"> </i> {{cours.dure}} hrs </div>
+                                    <button type="button" style="background-color: rgb(2, 2, 39); border: transparent;border-radius: 20px;
+                                    margin-top: 10px;margin-right: 5px; height: 30px;
+                                    display: flex; align-items: center;" class="btn btn-primary"><a style="color: beige;" href="{{path('det_cours',{"id":cours.id})}}">commencer</a></button>
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                           
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        </body>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const main=document.getElementById("main");
+        const nav=document.getElementById("nav");
+        const desc=document.querySelectorAll('.decri');
+        console.log(desc);
+       
+       function f1(){
+        console.log('hi');
+        main.classList.add("active");
+        nav.classList.add('ac')
+       }
+       function f2(){
+        console.log('bye');
+        main.classList.remove("active");
+        nav.classList.remove('ac')
+       }
+       const ctx = document.getElementById('myChart');
+
+       new Chart(ctx, {
+         type: 'bar',
+         data: {
+           labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+           datasets: [{
+             label: 'hrs par jours',
+             data: [12, 8, 3, 5, 2, 0, 0 ],
+             backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+            ],
+             borderWidth: 1
+           }]
+         },
+         options: {
+           scales: {
+             y: {
+               beginAtZero: true
+             }
+           }
+         }
+       });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+{% endblock %}

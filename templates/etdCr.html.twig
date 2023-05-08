@@ -1,0 +1,49 @@
+<style>
+    .nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .block{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .nav ul li a{
+        text-decoration: none;
+    }
+    .nav ul li a:hover{
+        font-size: large;
+        color:rgb(199, 50, 130);
+    }
+    .llllll{
+       text-shadow: .5px .5px 2px rgb(199, 50, 130);
+    }
+    .nav h3 span{
+        font-family: 'Ink Free';
+        color: rgb(199, 50, 130);
+    }
+    .nav h3{
+        font-family: 'Brush Script MT';
+        font-weight: 900;
+        font-size: 2rem;
+    }
+   
+</style>
+
+<div class="nav" id="nav">
+    <h3><span>L</span>O<span>G</span>O</h3>
+    <ul>
+        <li><a   href="{{url('etud')}}"> Accueil</a></li>
+        <li><a href="{{url('cours',{'typ':'All'})}}">Cours</a></li>
+        <li><a href="#">Mes cours</a></li>
+        <li><a href="{{url('fav')}}">Favoris</a></li>
+    </ul>
+    <div class="block">
+        <i class="fa fa-bell" ></i>
+        <img style="height: 50px; width: 50px;" src="assets\image\user.png" alt="">
+    </div>
+</div>

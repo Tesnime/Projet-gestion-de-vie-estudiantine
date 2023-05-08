@@ -1,0 +1,124 @@
+.colo{
+    height: 150px;
+    background-color: rgb(2, 2, 39);
+    margin-top: 30px;
+    margin-left: 1px;
+}
+.conte{
+    
+    height: 100vh;
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 30px;
+}
+.skil{
+    margin-top: -50px;
+    background-color: rgb(253, 253, 217);
+    height: 40vh;
+    border-radius: 20px;
+    border:1px solid #ccc ;
+}
+.cours{
+    margin-top: -50px;
+    background-color: rgb(253, 253, 217);
+    height: 100vh;
+    border-radius: 20px;
+    border:1px solid #ccc ;
+    padding: 30px;
+}
+.cours h4{
+    margin: 0;
+    font-weight: 600;
+}
+.main{
+    overflow-y: scroll;
+}
+.skil{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    gap: 10px;
+    
+
+}
+.skil span{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.sk{
+    display: flex;
+    align-items: center;
+    color: rgb(2, 2, 39);
+    justify-content: space-between;
+    width: 100%;
+}
+.rate{
+     display: flex;
+     align-items: center;
+     gap: 5px;
+ }
+ .rate i{
+     color: goldenrod;
+ }
+ .cours p{
+    font-size: 15px;
+    margin-top: 20px;
+ }
+ .cours img{
+    width: 100%;
+    margin: auto;
+    height: 250px;
+    border-radius: 5px;
+ }
+ .li{
+    width: 60px;
+    height: 60px;
+    background-color: rgb(2, 2, 39);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: rgb(253, 253, 217);
+ }
+ .coeur{
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+ }
+ .liked{
+    display: none;
+ }
+ .collap .container{
+    width: 92%;
+    margin: auto;
+    background-color: rgb(253, 253, 217);
+    margin-top: -120px;
+    z-index: 2;
+    position: relative;
+ }
+ .panel-body{
+    margin: 0;
+    padding: 0;
+ }
+ .panel-body ul{
+    list-style: none;
+    width: 100%;
+ }
+ .panel-body li{
+    height: 50px;
+    border: 1px solid #eee;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+ }
+ .panel-heading{
+    background-color: rgb(253, 253, 217);
+ }

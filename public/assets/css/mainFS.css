@@ -1,0 +1,253 @@
+.tit{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+}
+.hello p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: smaller;
+    margin-left: 15px;
+    margin-top: -1px;
+}
+.cont{
+    width: 100%;
+    color: rgb(2, 2, 39);
+    background-color: beige;
+    margin: 60px auto;
+}
+.hello{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+.txx{
+    width: 35%;
+    text-align: center;
+}
+.hello img{
+    width: 35%;
+    height: 250px;
+}
+.cors h3{
+    font-weight: 800;
+    font-size: 2rem;
+}
+.phot{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: aqua;
+}
+
+.Quiz {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    /* Font styles */
+   
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #607D8B;
+    letter-spacing: .01em;
+  }
+  
+  .webinaire {
+    position: relative;
+  }
+  
+  /* Panels */
+  .swipe {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    
+    background-image: url("../image/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: .3s;
+
+  }
+  .caption{
+    color: rgb(2, 2, 39);
+    font-weight: 800;
+    font-family: 'Roboto Slab', serif;
+    font-size: larger;
+    position: relative;
+    top: 120px;
+    
+  }
+
+
+
+
+
+h4{
+   margin:10px 60px 25px 25px;
+   font-family: monospace, 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   color: rgb(2, 2, 39);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+h4 a{
+   color: rgb(2, 2, 39);
+   text-decoration: underline;
+}
+
+
+
+
+.plus{
+   width: 70px;
+   height: 70px;
+   background-color: rgb(2, 2, 39);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: beige;
+}
+.plus i{
+   font-weight: 600;
+   font-size: 1rem;
+}
+.slider{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 50vh;
+   margin-left: 25px;
+}
+.slider{
+   height: 50vh;
+   width: 95%;
+  overflow: hidden;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.4);
+}
+.item {
+   width: 100%;
+   height: 100%;
+  
+}
+.item img{
+   width: 100%;
+   height: 100%;
+   
+}
+.add{
+   display: none;
+}
+.m{
+   display: block;
+}
+
+
+.sttt{
+   position: relative;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
+}
+
+.pt{
+   display: grid;
+   grid-template-rows: 90% 10%;
+   position: relative;
+   height: 100%;
+   bottom: 100%;
+}
+
+.server{
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   margin-top: 60px;
+}
+.ser{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   width: 170px;
+   height: 150px;
+
+}
+.ser h3{
+   font-size: .9rem;
+}
+.ser p{
+   font-size: small;
+   margin-top: -10px;
+}
+.iimg{
+   width: 50px ;
+   height: 50px;
+   border-radius: 7px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: large;
+}
+.more{
+   height: 40px;
+   width: 130px;
+   border-radius: 7px;
+   border: transparent;
+   background-color: #607d8b73;
+   margin-bottom: 10px;
+}
+.more:hover{
+   background-color: #607D8B;
+}
+.coffee{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   row-gap: 30px ;
+
+}
+
+.cof{
+   display: flex;
+   flex-direction: column;
+   background-color: transparent;
+   width: 180px;
+   height: 300px;
+   text-align: center;
+   border-radius: 20px;
+}
+.cof h4{
+   font-size: small;
+   width: 180px;
+}
+.cof img{
+   height: 170px;
+   width: 180px;
+}
+.cof p{
+   color: rgb(2, 2, 39);
+   margin-top: -10px;
+   font-size: small;
+}
+.pri{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   color: rgb(2, 2, 39);
+   margin-top: -10px;
+}
+.pri button{
+   background-color: rgb(2, 2, 39);
+   border-color: transparent;
+   color: rgba(245, 234, 206, 0.86);
+   width: 70px;
+   height: 30px;
+   border-radius: 5px;
+}

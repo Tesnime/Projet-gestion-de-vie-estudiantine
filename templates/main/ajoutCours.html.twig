@@ -1,0 +1,183 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/prof.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/add.css")}}>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<body style="background-color: rgb(2, 2, 39); height: 98%; width: 96%;">
+    
+
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a  href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+        <div class="main" id="main" style="margin-top:-2px ; padding-top: 8px; overflow-y: scroll;">
+               
+                <div class="bgcart">
+                    <div class="card  text-white" style="height: 170px; margin-top: 20px; background-color: rgba(2, 2, 39, 0.527);">
+                        <center>
+                            <div class="card-img-overlay" style="color: rgb(253, 253, 217);">
+                            <h5 style="color: rgb(253, 253, 217);" class="card-title">Créer un nouveau cours</h5>
+                            <p style="color: rgb(253, 253, 217);" class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </center>
+                      </div>
+                      <div class="mecr" style="background-color: rgba(255, 255, 255, 0.473); margin: auto; margin-top:30px;">
+                        <div class="bbn">
+                            <button class="bbb" id="bc1" onclick="bt1()">1</button>
+                            <div class="line"></div>
+                            <button id="bc2" onclick="bt2()">2</button>
+                            <div class="line"></div>
+                            <button id="bc3" onclick="bt3()">3</button>
+                        </div>
+                        <div class="cntn">
+                            <div class=" cntnn" id="c1">
+                                <form name="ajout_cours" action="" method="post" style="width: 90%; margin: auto; margin-top: 20px; margin-bottom: 30px;">
+                                    <div class="form-group" style="margin-bottom: 15px;">
+                                      <label for="exampleFormControlFile1">Example file input</label>
+                                      <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 15px;">
+                                        <label for="exampleInputEmail1">Nom de cours</label>
+                                        <input type="text" name="nom" class="form-control" id="exampleInputEmail1" placeholder="Nom de cours">
+                                      </div>
+                                      <div class="form-group"style="margin-bottom: 15px;">
+                                        <label for="exampleInputPassword1">Description</label>
+                                        <textarea class="form-control" name="descr" id="exampleInputPassword1" placeholder="Description..."></textarea>
+                                      </div>
+                                      <div class="form-row" style="display: flex;margin-bottom: 15px; justify-content: space-between; gap: 15px; " >
+                                        <div class="form-group col-md-6">
+                                          <label for="inputEmail4">categorie</label>
+                                          <select class="form-control" name="type" style="width: 95%;">
+                                            <option>developement</option>
+                                            <option>design</option>
+                                            <option>langue</option>
+                                            <option>mathematique</option>
+                                            <option>robotique</option>
+                                            <option>électroque</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6" >
+                                          <label for="inputPassword4">Niveau</label>
+                                          <select class="form-control" name="niveau" style="width: 95%;">
+                                            <option>Debutant</option>
+                                            <option>intermidiaire</option>
+                                            <option>expert</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="display: flex;margin-bottom: 15px; justify-content: space-between; gap: 15px; " >
+                                        <div class="form-group col-md-6">
+                                          <label for="inputEmail4">Langue</label>
+                                          <input type="text" name="langue"  class="form-control" style="width: 95%;" id="inputEmail4" placeholder="Langue">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="inputPassword4">Temps du cours</label>
+                                          <input type="text" name="dure"  class="form-control" style="width: 95%;" id="inputPassword4" placeholder="Temps" >
+                                        </div>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputEmail4">note</label>
+                                        <input type="text" name="note"  class="form-control" style="width: 95%;" id="inputEmail4" placeholder="note">
+                                      </div>
+                                      <div class="suiv"><button type="submit" type="button"class="btn suiv btn-primary" onclick="bt2()">Suivant</button></div>
+                                      
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                            
+                            
+                            <div class="c3 cntnn disp" style=" height: fit-content;" id="c3">
+                              <div style="height: 100px;">
+                                  <center>Votre cours été bien ajouté</center>
+                                  
+                              </div>
+                              <div class="suiv" style="width: 80%; display: flex; justify-content: flex-end; margin: auto; margin-bottom:30px; "><a href="{{url('formateur')}}"><button type="button"class="btn suiv btn-primary" > Suivant</button></a></div>
+
+                              
+                          </div>
+
+                        </div>
+                        
+                      </div>
+                </div>
+                {% endblock %}
+                <script>
+                    const bc1=document.getElementById('bc1'),
+                    bc2=document.getElementById('bc2'),
+                    bc3=document.getElementById('bc3');
+                    const ct1=document.getElementById('c1'),
+                    ct2=document.getElementById('c2'),
+                    ct3=document.getElementById('c3'),
+                    cntnn=document.querySelectorAll('.cntnn');
+
+                    const main=document.getElementById("main");
+                    const nav=document.getElementById("nav");
+                    const desc=document.querySelectorAll('.decri');
+                    console.log(desc);
+                   
+                   function f1(){
+                    console.log('hi');
+                    main.classList.add("active");
+                    nav.classList.add('ac')
+                   }
+                   function f2(){
+                    console.log('bye');
+                    main.classList.remove("active");
+                    nav.classList.remove('ac')
+                   }
+                   desc.forEach(element =>{
+                    element.addEventListener("mouseenter",function(){
+                        this.classList.add('hover');
+                    })
+                    element.addEventListener("mouseleave",function(){
+                        this.classList.remove('hover');
+                    })
+                })
+
+                    function bt1(){
+                        console.log('hh1')
+                        bc1.classList.add("bbb");
+                        bc2.classList.remove("bbb");
+                        bc3.classList.remove("bbb");
+                        cntnn.forEach(element=>{
+                            element.classList.add('disp');
+                        })
+                        ct1.classList.remove("disp");
+
+                    }
+                 
+                    function bt3(){
+                        console.log('hh3')
+                        bc3.classList.add("bbb");
+                        bc2.classList.remove("bbb");
+                        bc1.classList.remove("bbb");
+                        cntnn.forEach(element=>{
+                            element.classList.add('disp');
+                        })
+                        ct3.classList.remove("disp");
+
+                    }
+                    const pl=document.getElementById('plus'),
+                    moi=document.getElementById('moin');
+                    function plus(){
+                        pl.classList.remove('disp');
+                        moi.classList.add('disp');
+                    }
+                    function moins(){
+                        moi.classList.remove('disp');
+                        pl.classList.add('disp');
+                    }
+                  </script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>

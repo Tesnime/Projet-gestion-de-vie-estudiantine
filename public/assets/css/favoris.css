@@ -1,0 +1,21 @@
+.wishl{
+    margin-top: 30px;
+}
+.wishl h5{
+    font-weight: 600;
+    font-size: 2rem;
+}
+.wishl .cours{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border: transparent;
+    width: 100%;
+}
+.wishl .cour{
+    width: 100%;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 3fr .2fr;
+    margin: auto;
+}

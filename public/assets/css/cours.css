@@ -1,0 +1,14 @@
+
+
+.cat1 div{
+    width: 60px;
+    height: 60px;
+    background-color: rgba(95, 158, 160, 0.26);
+    color: cadetblue;
+    border-radius: 40px;
+}
+
+.cat1 a:hover{
+    color: cadetblue;
+}
+

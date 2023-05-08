@@ -1,0 +1,93 @@
+.bbn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(2, 2, 39, 0.452) ;
+}
+.bbn button{
+    width: 50px;
+    height: 50px;
+    border: transparent;
+    background-color: rgba(2, 2, 39, 0.452);
+    border-radius: 25px;
+    color: beige;
+    font-weight: 700;
+}
+.bbn .bbb{
+    background-color: rgba(2, 2, 39);
+}
+.line{
+    border: 1px solid rgba(2, 2, 39, 0.452) ;
+    width: 90px;
+}
+.c1,.c2,.c3{
+    height: fit-content;
+    position: relative;
+    top: 10px;
+}
+.c3{
+    height: 150px;
+}
+.c3 div{
+    font-weight: 700;
+    font-size: larger;
+    color: rgba(2, 2, 39);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lec{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.disp{
+    display: none;
+}
+form input {
+    background-color: transparent;
+}
+.suiv{
+    margin-top: 20px; 
+    display: flex;
+     justify-content: flex-end;
+}
+.lecs{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 90%;
+    margin: auto;
+}
+.leç{
+    background-color: #ddd;
+    width: 100%;
+    height: 50px;
+    font-size: larger;
+    color: rgba(2, 2, 39);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    border-radius: 7px;
+}
+.leç div{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.leç div span{
+    cursor: pointer;   
+}
+.le{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    border-bottom: .5px solid #eee;
+}

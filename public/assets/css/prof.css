@@ -1,0 +1,107 @@
+.nav ul li a{
+    text-decoration: none;
+}
+.asideNav a{
+    text-decoration: none;
+     color: aliceblue;
+}
+.nav h3{
+        margin:10px 60px 25px 25px;
+        font-family: monospace, 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(2, 2, 39);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+}
+.ontt{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: rgb(253, 253, 217);
+}
+.ontt aside{
+
+    height: 100vh;
+}
+.ontt section{
+    height: 100vh;
+}
+.ajt_crs{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-right: 80px;
+    margin-top: 35px;
+}
+.cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 45px;
+    margin-top: 30px;
+    border: transparent;
+}
+.card-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.card-title{
+    font-size: 3rem;
+}
+.card-text{
+    display: flex;
+    flex-direction: column;
+    font-weight: 650;
+    align-items: center;
+    justify-content: center;
+    color: rgb(245, 235, 220);
+}
+.mecr{
+    width: 90%;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid rgba(2, 2, 39, 0.274);
+    margin-top: 35px;
+    margin-left: 25px;
+    margin-bottom: 50px;
+}
+.h1{
+    height: 70px;
+    padding-left:35px ;
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-bottom: .5px solid rgba(2, 2, 39, 0.397);
+    margin: 0 5px ;
+}
+.asid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgb(2, 2, 39);
+    width: 80%;
+    margin: auto;
+    margin-top: 110px;
+    color: beige;
+}
+.asid div{
+    height: 40px;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.5px solid rgba(245, 245, 220, 0.514);
+    border-radius: 10px;
+}
+.actv{
+    background-color: beige;
+    color: rgb(2, 2, 39);
+}

@@ -1,0 +1,60 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/accueilFS.css")}}>
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+   <body>
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+        <div class="main" id="main">
+                <div class="nav" id="nav">
+                    <h3>LOGO</h3>
+                    <ul>
+                        <li><a href="#"> Accueil</a></li>
+                        <li><a href="#">Cours</a></li>
+                        <li><a href="#">Mes cours</a></li>
+                        <li><a href="#">Aide</a></li>
+                    </ul>
+                    <div class="block">
+                        <input type="search" name="search" class="search" placeholder="Chercher" id="">
+                        <i class="fa fa-bell" ></i>
+                        <img src="assets\image\user.png" alt="">
+                    </div>
+                
+            </div>
+            
+            {% block main2 %}
+                <div class="main2">
+                <div class="cont">a</div>
+                <div class="stat">b</div></div>
+            {% endblock main2 %}
+        </div>
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const main=document.getElementById("main");
+        const nav=document.getElementById("nav");
+       
+       function f1(){
+        console.log('hi');
+        main.classList.add("active");
+        nav.classList.add('ac')
+       }
+       function f2(){
+        console.log('bye');
+        main.classList.remove("active");
+        nav.classList.remove('ac')
+       }
+    </script>
+{% endblock %}

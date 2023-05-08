@@ -1,0 +1,65 @@
+.miniNav{
+    height: 50px;
+    background-color: rgb(238, 238, 206);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-left: 20px;
+}
+.miniNav div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100px;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+.miniNav div:hover {
+    border-bottom: 2px solid rgb(2,2,39);
+   
+}
+.miniNav div a:hover{
+    text-decoration: none;
+}
+.rating{
+    background-color:  rgba(255, 255, 217);
+    margin: 0;padding-top: 30px;
+
+}
+.statt{
+    display: grid;
+    grid-template-columns: 35% 65%;
+    align-items: center;
+    width: 70%;
+    background-color: rgba(2, 2, 39, 0.11);
+    margin: auto;
+    height: 150px;
+    padding: 0 50px;
+}
+.statt .part1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.mm{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
+.pourc{
+    width: 300px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+.prc{
+    position: relative;
+    background-color: goldenrod;
+    height: 5px;
+    width: 65%;
+    border-radius: 5px;
+}
