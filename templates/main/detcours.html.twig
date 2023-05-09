@@ -124,7 +124,7 @@
                                                         <i style="color: goldenrod" class="fa-solid fa-star"></i>
                                                     {% endfor %} 
                                                 {% endif %}
-                                                {% if moy|round!=5 %}
+                                                {% if moy|round !=5 %}
                                                     {% for i in 1..(5-moy|round) %}
                                                         <i  class="fa-solid fa-star"></i>
                                                     {% endfor %}  
@@ -268,12 +268,16 @@
                                     <div class="coments" id="comments-container">
                                         <div class="nom">
                                             <h3>{{row.user}} </h3>
+                                            {% if row.rate != 0  %}
                                             {% for i in 1..row.rate %}
                                                 <i style="color: goldenrod" class="fa-solid fa-star"></i>
                                             {% endfor %} 
+                                            {% endif %}
+                                            {% if row.rate !=5 %}
                                             {% for i in 1..(5-row.rate) %}
                                                 <i  class="fa-solid fa-star"></i>
-                                            {% endfor %}  
+                                            {% endfor %} 
+                                            {% endif %} 
                                         </div>
                                         <span>{{row.creatAt|date('Y-m-d H:i:s')}} </span>
                                         <p>{{row.comment}}</p>
