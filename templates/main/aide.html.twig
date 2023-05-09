@@ -1,0 +1,113 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+    <link rel="stylesheet" href={{asset("assets/css/aide.css")}}>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/450c9bb9e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<body style="background-color: rgb(2, 2, 39); height: 98%; width: 96%;">
+    
+
+    
+         <div class="asideNav" id="asideNav" onmouseenter="f1()" onmouseleave="f2()">
+            
+            <a  href=" #"><img src="assets\image\icons8-page-d’accueil-32.png"  alt="">Accueil</a>
+           <a href=" #"><img src="assets\image\icons8-télécharger-le-rapport-de-graphique-24.png" alt="">Formation universitaire</a>
+           <a href=" #"><img src="assets\image\icons8-e-learning-48.png" alt="">Formation supplimentaire</a>
+            <a href=" #"><img src="assets\image\icons8-evénement-accepté-24.png" alt=""> Nouveautés des clubs</a>
+        </div>
+                <div class="main" id="main" style="overflow-y: scroll;">
+                    {% include "etdCr.html.twig" %}
+                    
+                    <div class="ajtpost">
+                        <form action="" method="post" class="frm">
+                            <textarea name="text" id="" cols="30" rows="1" placeholder="Ton question..."></textarea>
+                            <button type="submit" name="post" value="post" class="btn btn-secondary">Poster</button>
+                        </form>
+                    </div>
+                    {% for p in post %}
+                        
+                    
+                    <div class="comments">
+                        <p>
+                            <span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 700;">{{p.user}}</span><br>
+                           {{p.text}}
+                        </p>
+                        <div class="like">
+                            <form action="" method="post" style="margin-top: 14px;">
+                                <input type="text" name="id" style="display: none;" value="{{p.id}}">
+                                <button name="like" value="like" class="btnj" type="submit">j'aime ({{p.lik}})</button>
+                            </form>
+                            <button class="collapsible btnj">commentaire</button>
+                        </div>
+                        <div class="content">
+                            {% for c in comnt %}
+                               {% if c.postId==p.id %}
+                                
+                               
+                            <p>
+                                <span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 700;">{{c.user}}</span><br>
+                               {{c.text}}
+                            </p>
+                            <div class="like">
+                                <form action="" method="post" style="margin-top: 14px;"><button class="btnj" type="submit">j'aime ({{c.lik}})</button></form>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            <form action="" method="post" class="frm" style="margin: 5px auto; width: 90%;">
+                                <input type="text" name="id" style="display: none;" value="{{p.id}}">
+                                <textarea name="text" id="" cols="30" rows="1" placeholder="Commentaire..."></textarea>
+                                <button type="submit" name="commnt" value="commnt" class="btn btn-secondary">Poster</button>
+                            </form>
+                             
+                            
+                           
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                     
+                </div>
+
+        </body>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const main=document.getElementById("main");
+        const nav=document.getElementById("nav");
+        const desc=document.querySelectorAll('.decri');
+        console.log(desc);
+       
+       function f1(){
+        console.log('hi');
+        main.classList.add("active");
+        nav.classList.add('ac')
+       }
+       function f2(){
+        console.log('bye');
+        main.classList.remove("active");
+        nav.classList.remove('ac')
+       }
+       var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.parentElement.nextElementSibling;
+            console.log(content)
+            if (content.style.display === "block") {
+                content.style.display = "none";
+              } else {
+                content.style.display = "block";
+              }
+        });
+    }
+    </script>
+{% endblock %}

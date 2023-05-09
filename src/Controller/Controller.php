@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Component\Form\FormTypeInterface;
 use App\Entity\Cours;
+use App\Entity\Commnt;
+use App\Entity\Post;
 use App\Entity\Favoris;
 use App\Entity\Lecon;
 use App\Entity\Chapitre;
@@ -12,11 +14,13 @@ use App\Entity\Feedback;
 use App\Entity\Type;
 use App\Repository\ChapitreRepository;
 use App\Repository\CommancerRepository;
+use App\Repository\CommntRepository;
 use App\Repository\CoursRepository;
 use App\Repository\TypeRepository;
 use App\Repository\FavorisRepository;
 use App\Repository\FeedbackRepository;
 use App\Repository\LeconRepository;
+use App\Repository\PostRepository;
 use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -334,5 +338,52 @@ class Controller extends AbstractController
         }
         return $this->render('/main/lecon.html.twig',['c'=>$chapitre,'id'=>$id,'l'=>$lecs,'cours'=>$cours,'progres'=>$progres,'detL'=>$detLec,]);
     }
+    #[Route('/MesCours', name: 'mescours')]
+    public function mcours(CommancerRepository $cr,EntityManagerInterface $em): Response
+    {
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('c')
+            ->from('App\Entity\Commancer', 'cm')
+            ->join('App\Entity\Cours', 'c' ,'WITH', 'c.id=cm.id_cours')
+            ->where('c.user = :user')
+            ->setParameter('user', 'tesnime');
+
+            $cours = $qb->getQuery()->getResult();
+        return $this->render('/main/mescours.html.twig',['c'=>$cours]);
+    }
+    #[Route('/aide', name: 'aide')]
+    public function aide(CommntRepository $cr,PostRepository $pr,EntityManagerInterface $em,Request $req): Response
+    {
+        if($req->request->count()){
+            if($req->request->get('post')){
+                $post=new Post();
+                $post->setUser('tesnime')
+                ->setLik(0)
+                ->setText($req->request->get('text'));
+                $em->persist($post);
+                $em->flush();
+            }
+            if($req->request->get('like')){
+                $post=$em->getRepository(Post::class)->find($req->request->get('id'));
+                $post->setLik($post->getLik()+1);
+                $em->flush();
+            }
+            if($req->request->get('commnt')){
+                $comnt=new Commnt();
+                $comnt->setUser('tesnime')
+                ->setLik(0)
+                ->setText($req->request->get('text'))
+                ->setPostId($req->request->get('id'));
+                $em->persist($comnt);
+                $em->flush();
+            }
+            
+        }
+        $post=$pr->findAll();
+        $comnt=$cr->findAll();
+        return $this->render('/main/aide.html.twig',['post'=>$post,'comnt'=>$comnt]);
+    }
 }
+
 ?>

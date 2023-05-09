@@ -33,19 +33,19 @@
                         <div class="asidb">
                             <nav class="asid">
                                 <div><a class="nav-link" href="{{url('etud')}}">Accueil</a></div>
-                                <div><a class="nav-link" href="{{url('mescours')}}">Mes cours</a></div>
-                                <div class="actv"><a class="nav-link" href="#">Favoris</a></div>
+                                <div class="actv"><a class="nav-link" href="{{url('mescours')}}">Mes cours</a></div>
+                                <div ><a class="nav-link" href="{{path('fav')}}">Favoris</a></div>
                                 <div><a class="nav-link" href="#">Modifier le profile</a></div>
                                 <div><a class="nav-link" href="#">Modifier le mot de passe</a></div>
                                 <div><a class="nav-link" href="#">Déconnecter</a></div>
                               </nav>
                         </div>
                         <div class="wishl">
-                            <h5><i class="fa-brands fa-gratipay"></i> Favoris</h5>
+                            <h5>Mes cours</h5>
                             <div class="cours">
-                                {% for cours in courses %}
+                                {% for cours in c %}
                                 
-                                <div class="cour">
+                                <div class="cour" style="display: grid; grid-template-columns: 30% 70%;">
                                     <img style="height: 95%; margin:auto;" src="assets/image/{{cours.image}}" alt="">
                                     <div class="decri"  >
                                         <div class="cc">
@@ -54,23 +54,20 @@
                                         <div class="dd">
                                             <p>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet.</p>
                                         </div>
-                                        <div class="detail" style="display: flex;">
-                                            <span class="rate"style="margin: -10px -20px auto auto; "><i class="fa-solid fa-star"></i><span class="val">{{cours.note}}%</span></span>
-                                            <span class="rate" style="color: cadetblue; margin: auto; margin-top: -10px;"><i style="color: cadetblue;" class="fa-solid fa-globe"></i><span  class="val">{{cours.langue}}</span></span>
-                                            <span class="rate" style="color: orange; margin: auto; margin-top: -12px;"><i style="color: orange;" class="fa-solid fa-signal"></i><span  class="val">{{cours.niveau}}</span></span>
+                                        <div class="pourc" style="width: 90%; margin: auto;">
+                                            <div class="prc" id="{{cours.nom}}"></div>
                                         </div>
-                                        <div class="acces">
-                                            <div class="temps"> <i class="fa-regular fa-clock"> </i> {{cours.dure}} hrs </div>
+                                        <script>
+                                            document.getElementById('{{cours.nom}}').style.width='{{cours.progres}}%';
+                                        </script>
+                                        <div class="acces" style="display: flex; justify-content: flex-end;">
                                             <button type="button" style="background-color: rgb(2, 2, 39); border: transparent;border-radius: 20px;
                                             margin-top: 10px;margin-right: 5px; height: 30px;
-                                            display: flex; align-items: center;" class="btn btn-primary"><a style="color: beige;" href="{{path('det_cours',{"id":cours.id})}}">commencer</a></button>
-                                            
+                                            display: flex; align-items: center;" class="btn btn-primary"><a style="color: beige;" href="{{path('det_cours',{"id":cours.id})}}">continuer</a></button>
                                         </div>
+                                        
                                     </div>
-                                    <div class="li" style="margin-top: 20px;">
-                                        <div class="like liked" id="unl" onclick="fav()"><i class="fa-regular fa-heart"></i></div>
-                                        <div class="like hh "  style="color: red;"id="l" onclick="unfav()"><a href="{{path('fav',{'id':cours.id,'fav':'unfav'})}}"><i style="color: red;" class="fa-solid fa-heart"></i></a></div>
-                                    </div>
+                                    
                                 </div>
                                 {% endfor %}
                               

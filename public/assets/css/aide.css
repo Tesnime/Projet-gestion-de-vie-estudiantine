@@ -1,0 +1,76 @@
+.ajtpost{
+    margin-bottom: 50px;
+}
+.ajtpost form,.frm{ 
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.frm textarea{
+    width: 60%;
+    border: #ccc;
+    box-shadow: 1px 1px 4px #ddd;
+    padding: 7px 20px;
+}
+.frm textarea,
+.frm button{
+    height: 40px;
+}
+.comments{
+    width: 80%;
+    margin: auto;
+   
+}
+.comments p{
+    width: 90%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.692);
+    box-shadow: 1px 1px 2px #ccc;
+    padding: 10px;
+    font-size: medium;
+    font-weight: 400;
+}
+.btnj{
+    border: transparent;
+    background-color: transparent;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace;
+    font-size: 15px;
+    font-weight: 500;
+}
+.like{
+    display: flex;
+    align-items: center;
+    gap: 15px;    
+    width: 80%;
+    margin: auto;
+    margin-top: -10px;
+}
+.content{
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    width: 90%;
+    border-radius: 20px;
+    border: 1px solid rgba(2, 2, 39, 0.397);
+    margin: auto;
+    border-top: transparent;
+}
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.blk{
+    display: block;
+}
+
+.active:after {
+    content: "\2212";
+}
