@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{asset("assets/css/signup.css")}}>
+    <link 
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
+    <title>Login</title>
+</head>
+
+
+<body>
+    <div class="imageB">
+        <img class="back" src="assets/image/back_log.jpg" alt="">
+        <div class="im">.</div>
+    </div>
+    
+   <div class="log">
+        <div class="btn">
+            <input class="btn1 active" type="button" value="Login">
+            <input class="btn1 nonactive" type="button" value="Sign up" onclick="refresh()">
+        </div>
+        <div style="display: flex; align-items: center;justify-content: center; color: red;">{{err}}</div>
+        <div class="frm f ">
+            <form action="" method="post">
+                <input type="text" name="mail" placeholder="Adresse email"><br>
+                <input type="password" name="password" placeholder="Mot de passe"><br>
+                <span><?php  echo $msg;?></span><br>
+                <a class="mdpoubli" href="http://" target="_blank" rel="noopener noreferrer">Mot de passe oublié?</a><br>
+                <button type="submit" value="begin" name="begin" class="btnlog">Login</button>
+            </form>
+        </div>
+        <div class="frm1 f nonvis">
+            <form action="" method="post">
+                <input class="m m1" style="margin-right: 20px;" type="text" name="nom" placeholder="Nom">
+                <input class="m m1" type="text" name="prenom" placeholder="Prénom"><br>
+                <input class="m" type="text" name="mail" placeholder="Adresse email"><br>
+                <select class="m" name="filiere" id="">
+                    <option value="prepaA1">PrepaA1</option>
+                    <option value="prepaA1">PrepaA2</option>
+                    <option value="FIA1">FIA1</option>
+                    <option value="FIA2">FIA2</option>
+                </select><br>
+                <input class="m" type="password" name="password" placeholder="Mot de passe"><br>
+                <input class="m" type="password" name="password1" placeholder="Confirme mot de passe"><br>
+                <span></span><br>
+                <div class="capt">
+                    <div class="captcha" id="captcha"></div>
+                    <div class="in"> 
+                        <input class="m2" type="text" name="capt"
+                        id="capt" placeholder="entrer le code">
+                        <button class="btncap" onclick="refresh()" ><i class="fa fa-refresh"></i></button><br>
+                    </div>
+                   
+                </div>
+                <button name="bgn1" value="bgn1" type="submit" class="btnlog">Sign up</button>
+            </form>
+
+        </div>
+   </div>
+   <div class="footimg">
+    <img src="image/books-in-a-row-with-one-book-standing-out-removebg-preview.png" alt="">
+   </div>
+</body>
+<script>
+    const modalViews=document.querySelectorAll('.btn1'),
+    contenu=document.querySelectorAll('.f');
+    console.log(modalViews);
+    modalViews.forEach(element =>{
+        element.addEventListener("click",function(){
+            modalViews.forEach(btn=>btn.classList.remove("active"))
+            modalViews.forEach(btn=>btn.classList.add("nonactive"))
+            contenu.forEach(ee=>ee.classList.add("nonvis"))
+            this.classList.add("active");
+            this.classList.remove("nonactive");
+            if(this==modalViews[0]){
+                contenu[0].classList.remove("nonvis");
+            }
+            else{
+                contenu[1].classList.remove("nonvis");
+            }
+             
+        
+        })
+    })
+    function refresh(){
+        document.getElementById("capt").value = "";
+        captcha = document.getElementById("captcha");
+        var uniquechar = "";
+    
+        const randomchar =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+ 
+        for (let i = 0; i < 7; i++) {
+        uniquechar += randomchar.charAt(
+            Math.random() * randomchar.length)
+    }
+    captcha.innerHTML = uniquechar;
+    }
+
+</script>
+</html>

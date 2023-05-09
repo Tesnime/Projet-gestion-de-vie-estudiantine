@@ -11,7 +11,9 @@ use App\Entity\Lecon;
 use App\Entity\Chapitre;
 use App\Entity\Commancer;
 use App\Entity\Feedback;
+use App\Entity\Formateur;
 use App\Entity\Type;
+use App\Entity\User;
 use App\Repository\ChapitreRepository;
 use App\Repository\CommancerRepository;
 use App\Repository\CommntRepository;
@@ -19,8 +21,10 @@ use App\Repository\CoursRepository;
 use App\Repository\TypeRepository;
 use App\Repository\FavorisRepository;
 use App\Repository\FeedbackRepository;
+use App\Repository\FormateurRepository;
 use App\Repository\LeconRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,51 +32,98 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\Cookie;
  
 
 class Controller extends AbstractController
 {
    
     #[Route('/mainFS', name: 'mainFS')]
-    public function index(CoursRepository $cr): Response
+    public function index(CoursRepository $cr,UserRepository $ur,Request $request): Response
     {
         $cours=$cr->findBy([],['note'=> 'DESC'],3);
-        return $this->render('/main/acceuil.html.twig',['c'=>$cours]);
+        $myCookie = $request->cookies->get('id');
+        $user=$ur->findBy(['id'=>$myCookie]);
+        return $this->render('/main/acceuil.html.twig',['c'=>$cours,'user'=>$user]);
     }
-    #[Route('/etudiant', name: 'etud')]
-    public function etudi(EntityManagerInterface $em,CoursRepository $cr): Response
+    #[Route('/login', name: 'login')]
+    public function auth(EntityManagerInterface $em,UserRepository $ur,Request $request): Response
     {
+        $err="";
+        if($request->request->count()>0){
+            if($request->request->get('bgn1')){
+                $user=new User();
+                if($request->request->get('nom')=="" || $request->request->get('prenom')=="" || $request->request->get('mail')=="" || $request->request->get('filiere')=="" || $request->request->get('password')==""){
+                    $err="priére de remplir les champs";
+                }elseif($request->request->get('password') != $request->request->get('password1')){
+                    $err="les mots de passe doivent etre similaire";
+                }else{
+                    $user->setNom($request->request->get('nom'))
+                    ->setPrenom($request->request->get('prenom'))
+                    ->setMail($request->request->get('mail'))
+                    ->setFiliere($request->request->get('filiere'))
+                    ->setMdp($request->request->get('password'));
+                    $em->persist($user);
+                    $em->flush();
+                    $err="ajout d'un utilisateur avec succes";
+                }
+                return $this->render('/main/login.html.twig',["err"=>$err]);
+            }
+            if($request->request->get('begin')){
+                $user=$ur->findBy(['mail'=>$request->request->get('mail'),'mdp'=>$request->request->get('password')]);
+                if(count($user)>0){
+                    $cookie = new Cookie('id',$user[0]->getId() , time() + 3600 * 24 * 7);
+                    $response = new Response();
+                    $response->headers->setCookie($cookie);
+                    $response->send();
+                    return $this->redirectToRoute('mainFS');
+                }
+                else{
+                    $err="verifié vos coordonnées";
+                }
+            }
+        }
+        return $this->render('/main/login.html.twig',["err"=>$err]);
+    }
+
+    #[Route('/etudiant', name: 'etud')]
+    public function etudi(EntityManagerInterface $em,UserRepository $ur,Request $request,CoursRepository $cr): Response
+    {
+       $myCookie = $request->cookies->get('id');
+        
         $query = $em->createQuery(
-            'SELECT c FROM App\Entity\Commancer c WHERE c.progres = :progress AND c.user = :user'
-        )->setParameter('progress', 100)->setParameter('user', 'tesnime');
+            'SELECT c FROM App\Entity\Commancer c WHERE c.progres >= :progress AND c.user = :user'
+        )->setParameter('progress', 100)->setParameter('user', $myCookie);
         $ter = $query->getResult();
         $cours=$cr->findBy([],['note'=> 'DESC'],3);
         $cours1=$cr->findBy([],['nom'=> 'DESC'],3);
+        
+        $user=$ur->findBy(['id'=>$myCookie]);
         $qb = $em->createQueryBuilder();
             $qb
                 ->select('c')
                 ->from('App\Entity\Commancer', 'cm')
                 ->join('App\Entity\Cours', 'c' ,'WITH', 'c.id=cm.id_cours')
                 ->where('c.user = :user')
-                ->setParameter('user', 'tesnime');
+                ->setParameter('user', $myCookie);
     
                 $res = $qb->getQuery()->getResult();
+                
         return $this->render('/main/mainFS.html.twig',['res'=>$res,'c'=>$cours,'c1'=>$cours1,'ter'=>$ter]);
     }
     #[Route('/favoris', name: 'fav')]
-    public function favoris(EntityManagerInterface $em,Request $req,FavorisRepository $fr): Response
+    public function favoris(EntityManagerInterface $em,UserRepository $ur,Request $req,FavorisRepository $fr): Response
     {
+        $myCookie = $req->cookies->get('id');
+        $user=$ur->findBy(['id'=>$myCookie]);
         $id=$req->query->get('id');
         $fav=$req->query->get('fav');
         $fa=$fr->findBy(['id_cours'=>$id]);
         $cours=$em->createQueryBuilder()->select('c')
         ->from('App\Entity\Cours', 'c')
-        ->join('App\Entity\Favoris', 'f', 'WITH', 'c.id = f.id_cours' );
+        ->join('App\Entity\Favoris', 'f', 'WITH', 'c.id = f.id_cours' )
+        ->where('c.user = :user')
+        ->setParameter('user', $myCookie);
         $courses = $cours->getQuery()->getResult();
         if($fav=='unfav'){
             foreach($fa as $ff){
@@ -83,17 +134,33 @@ class Controller extends AbstractController
         return $this->render('/main/favoris.html.twig', ['courses' => $courses]);
     }
     #[Route('/apply', name: 'apply')]
-    public function apply(): Response
+    public function apply(Request $req,EntityManagerInterface $em): Response
     {
-        return $this->render('/main/enter.html.twig');
+        $ll='yy';
+        $myCookie = $req->cookies->get('id');
+        if($req->request->count()>0){
+            if($req->request->get('ok')){
+                $ll='hi';
+            $formateur=new Formateur();
+            $formateur->setIdUser($myCookie);
+            $em->persist($formateur);
+            $em->flush();
+            return $this->redirectToRoute('formateur');
+            }
+        }
+        return $this->render('/main/enter.html.twig',['ll'=>$ll]);
     }
     #[Route('/formateur', name: 'formateur')]
-    public function form(CoursRepository $cr,Request $request,EntityManagerInterface $em): Response
+    public function form(CoursRepository $cr,FormateurRepository $fr,Request $request,EntityManagerInterface $em): Response
     {
+        $myCookie = $request->cookies->get('id');
+        $form=$fr->findBy(['idUser'=>$myCookie]);
+        if(count($form)==0){
+            return $this->render('/main/enter.html.twig');
+        }
         
         
-
-        $cours=$cr->findBy(['user'=>'tesnime']);
+        $cours=$cr->findBy(['user'=>$myCookie]);
         $fav=$request->query->get('fav');
         $id=$request->query->get('id');
         $crs=$cr->findBy(['id'=>$id]);
@@ -103,7 +170,7 @@ class Controller extends AbstractController
             ->from('App\Entity\Favoris', 'f')
             ->join('App\Entity\Cours', 'c' ,'WITH', 'c.id=f.id_cours')
             ->where('c.user = :user')
-            ->setParameter('user', 'tesnime');
+            ->setParameter('user', $myCookie);
 
             $results = $queryBuilder->getQuery()->getResult();
 
@@ -113,7 +180,7 @@ class Controller extends AbstractController
                 ->from('App\Entity\Commancer', 'cm')
                 ->join('App\Entity\Cours', 'c' ,'WITH', 'c.id=cm.id_cours')
                 ->where('c.user = :user')
-                ->setParameter('user', 'tesnime');
+                ->setParameter('user', $myCookie);
     
                 $res = $qb->getQuery()->getResult();
         if($fav=='unfav'){
@@ -128,8 +195,10 @@ class Controller extends AbstractController
     #[Route('/ajout', name: 'ajout')]
     public function ajout(EntityManagerInterface $em,Request $request)
     {
+        $myCookie = $request->cookies->get('id');
         if($request->request->count()>0)
         {
+            
         $cours = new Cours();
         $cours->setImage($request->request->get('image'))
         ->setNom($request->request->get('nom'))
@@ -139,7 +208,8 @@ class Controller extends AbstractController
         ->setDure($request->request->get('dure'))
         ->setNote($request->request->get('note'))
         ->setLangue($request->request->get('langue'))
-        ->setUser('tesnime');
+        ->setUser($myCookie)
+        ->setProgres(0);
         /*return $this->render(
             'tp/show.html.twig',['title'=>$article->getTitre()]);*/
             $em->persist($cours);
@@ -215,22 +285,25 @@ class Controller extends AbstractController
     #[Route('/det_cours', name: 'det_cours')]
     public function det_cours(Request $req,FeedbackRepository $fdr,FavorisRepository $fr,ChapitreRepository $chR,CoursRepository $cr,EntityManagerInterface $em): Response
     { 
+        $myCookie = $req->cookies->get('id');
         $page = $req->query->getInt('page', 1);
         $limit = 3;
         $offset = ($page - 1) * $limit;
         $id=$req->query->get('id');
-        $fav=$req->query->get('fav');
+       
         $favoris=new favoris();
         $fa=$fr->findBy(['id_cours'=>$id]);
         $f=$fr->count(['id_cours'=>$id]);
         $chapitre=$chR->findBy(['id_cours'=>$id]);
-        $favoris->setIdCours($id);
+        $favoris->setIdCours($id)
+        ->setUser($myCookie);
         $lec=$em->createQueryBuilder()->select('l')
         ->from('App\Entity\Lecon', 'l')
         ->join('App\Entity\Chapitre', 'c', 'WITH', 'c.id = l.id_ch'  )
         ->where('c.id_cours=:id')
         ->setParameter('id',$id);
         $lecs = $lec->getQuery()->getResult();
+        $fav=$req->query->get('fav');
          if($fav=='fav'&& $f==0 ){ 
             $em->persist($favoris);
             $em->flush();
@@ -264,7 +337,7 @@ class Controller extends AbstractController
         
        
         $etoile = $query->getResult();
-       
+        $fav=$req->query->get('fav');
         $cours=$cr->findBy(['id'=>$id]);
         return $this->render('/main/detcours.html.twig',['c'=>$cours,'f'=>$fa,'fd'=>$feedb,'f1'=>$f,'c1'=>$chapitre,'l'=>$lecs,'etoile'=>$etoile]);
     }
@@ -318,6 +391,7 @@ class Controller extends AbstractController
             }
             
         }
+        $myCookie = $req->cookies->get('id');
         $cours=$cr->findBy(['id'=>$id]);
         $chapitre=$chR->findBy(['id_cours'=>$id]);
         $lec=$em->createQueryBuilder()->select('l')
@@ -332,33 +406,36 @@ class Controller extends AbstractController
             $cr_cm=new Commancer();
             $cr_cm->setIdCours($id)
             ->setProgres($cours[0]->getProgres())
-            ->setUser('tsnime');
+            ->setUser($myCookie);
             $em->persist($cr_cm);
             $em->flush();
         }
         return $this->render('/main/lecon.html.twig',['c'=>$chapitre,'id'=>$id,'l'=>$lecs,'cours'=>$cours,'progres'=>$progres,'detL'=>$detLec,]);
     }
     #[Route('/MesCours', name: 'mescours')]
-    public function mcours(CommancerRepository $cr,EntityManagerInterface $em): Response
+    public function mcours(CommancerRepository $cr,Request $request,EntityManagerInterface $em): Response
     {
+        $myCookie = $request->cookies->get('id');
         $qb = $em->createQueryBuilder();
         $qb
             ->select('c')
             ->from('App\Entity\Commancer', 'cm')
             ->join('App\Entity\Cours', 'c' ,'WITH', 'c.id=cm.id_cours')
             ->where('c.user = :user')
-            ->setParameter('user', 'tesnime');
+            ->setParameter('user', $myCookie);
 
             $cours = $qb->getQuery()->getResult();
         return $this->render('/main/mescours.html.twig',['c'=>$cours]);
     }
     #[Route('/aide', name: 'aide')]
-    public function aide(CommntRepository $cr,PostRepository $pr,EntityManagerInterface $em,Request $req): Response
+    public function aide(CommntRepository $cr,UserRepository $ur,PostRepository $pr,EntityManagerInterface $em,Request $req): Response
     {
+        $myCookie = $req->cookies->get('id');
+        $user=$ur->findBy(['id'=>$myCookie]);
         if($req->request->count()){
             if($req->request->get('post')){
                 $post=new Post();
-                $post->setUser('tesnime')
+                $post->setUser($user[0]->getNom())
                 ->setLik(0)
                 ->setText($req->request->get('text'));
                 $em->persist($post);
@@ -371,7 +448,7 @@ class Controller extends AbstractController
             }
             if($req->request->get('commnt')){
                 $comnt=new Commnt();
-                $comnt->setUser('tesnime')
+                $comnt->setUser($user[0]->getNom())
                 ->setLik(0)
                 ->setText($req->request->get('text'))
                 ->setPostId($req->request->get('id'));

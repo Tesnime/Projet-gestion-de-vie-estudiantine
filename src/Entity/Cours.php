@@ -25,8 +25,9 @@ class Cours
     #[ORM\Column]
     private ?int $dure = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $user = null;
+    #[ORM\Column]
+    private ?int $user = null;
+
 
     #[ORM\Column(length: 20)]
     private ?string $niveau = null;
@@ -65,18 +66,18 @@ class Cours
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUser(): ?int
     {
         return $this->user;
     }
 
-    public function setUser(string $user): self
+    public function setUser(int $user): self
     {
-        $this->user = $user; 
+        $this->user = $user;
 
         return $this;
     }
-
+    
     public function getDure(): ?int
     {
         return $this->dure;

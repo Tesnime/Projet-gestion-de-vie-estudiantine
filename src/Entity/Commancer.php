@@ -19,8 +19,8 @@ class Commancer
     #[ORM\Column]
     private ?int $progres = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $user = null;
+    #[ORM\Column]
+    private ?int $user = null;
 
     public function getId(): ?int
     {
@@ -51,12 +51,12 @@ class Commancer
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUser(): ?int
     {
         return $this->user;
     }
 
-    public function setUser(string $user): self
+    public function setUser(int $user): self
     {
         $this->user = $user;
 
